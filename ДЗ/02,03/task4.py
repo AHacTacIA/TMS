@@ -9,8 +9,9 @@
 
 string = input("Введите строку: ")
 str_list = string.split()
-new_str = str()
+new_str_list = list()
 for i in range(len(str_list)):
-    new_str += str_list[i][::-1] + " "
-new_str = new_str[:-1]
+    new_str_list.append(str_list[i][::-1])
+
+new_str = " ".join(new_str_list)
 print(new_str)

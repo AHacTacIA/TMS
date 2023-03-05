@@ -15,14 +15,15 @@ string = input("Ведите строку: ")
 string_even_sl = string[1::2]
 string_odd_sl = string[::2]
 
-string_even = str()
-string_odd = str()
+list_str_even = list()
+list_str_odd = list()
 for i in range(len(string)):
     if i % 2 == 1:
-        string_even += string[i]
+        list_str_even.append(string[i])
     else:
-        string_odd += string[i]
-
+        list_str_odd.append(string[i])
+string_even = "".join(list_str_even)
+string_odd = "".join(list_str_odd)
 print(f"Введена строка {string}")
 print("\n\n")
 print(f"{string_even}     {string_odd}\n!!!")
