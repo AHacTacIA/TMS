@@ -5,7 +5,7 @@
 # Ввод и вывод результата производится вне функции проверки
 
 
-def chek_even(num: int = None) -> bool:
+def chek_even(num: int = None) -> bool | None:
     if type(num) != int:
         print("Введённые данные не являются числом")
     elif num % 2 == 0:
