@@ -20,3 +20,5 @@ class Auto:
         self.mark = mark
         self.color = color
         self.weight = weight
+
+
