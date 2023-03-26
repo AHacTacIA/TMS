@@ -14,7 +14,7 @@ class Auto:
     def birthday(self):
         self.age += 1
 
-    def __init__(self, brand, age, mark, color=None, weight=None):
+    def __init__(self, brand: str, age: int, mark: str, color: str = None, weight: int = None):
         self.brand = brand
         self.age = age
         self.mark = mark

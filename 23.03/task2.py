@@ -22,7 +22,7 @@ class Truck(Auto):
         print("load")
         time.sleep(1)
 
-    def __init__(self, brand, age, mark, max_load, color=None, weight=None):
+    def __init__(self, brand: str, age: int, mark: str, max_load: int, color: str = None, weight: int = None):
         super().__init__(brand, age, mark, color, weight)
         self.max_load = max_load
 
@@ -32,7 +32,7 @@ class Car(Auto):
         super().move()
         print(f"max speed is {self.max_speed}")
 
-    def __init__(self, brand, age, mark, max_speed, color=None, weight=None):
+    def __init__(self, brand: str, age: int, mark: str, max_speed: int, color: str = None, weight: int = None):
         super().__init__(brand, age, mark, color, weight)
         self.max_speed = max_speed
 

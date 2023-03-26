@@ -14,7 +14,7 @@ class Contact:
 
 class PhoneBook:
 
-    def add(self, contact):
+    def add(self, contact: Contact):
         json_data = {
             "name": contact.name,
             "phone": contact.phone,
@@ -24,21 +24,21 @@ class PhoneBook:
         with open(self.file, "w") as file:
             json.dump(data, file, indent=4)
 
-    def find_by_name(self, name):
+    def find_by_name(self, name: str) -> str:
         with open(self.file, "r") as json_file:
             data = json.load(json_file)
             for contact in data:
                 if contact['name'] == name:
                     return contact['phone']
 
-    def find_by_phone(self, phone):
+    def find_by_phone(self, phone: str) -> str:
         with open(self.file, "r") as json_file:
             data = json.load(json_file)
             for contact in data:
                 if contact['phone'] == phone:
                     return contact['name']
 
-    def delete_by_phone(self, phone):
+    def delete_by_phone(self, phone: str):
         with open(self.file, "r") as json_file:
             data = json.load(json_file)
             for i, contact in enumerate(data):
@@ -47,7 +47,7 @@ class PhoneBook:
         with open(self.file, "w") as json_file:
             json.dump(data, json_file, indent=4)
 
-    def delete_by_name(self, name):
+    def delete_by_name(self, name: str):
         with open(self.file, "r") as json_file:
             data = json.load(json_file)
             for i, contact in enumerate(data):
@@ -56,7 +56,7 @@ class PhoneBook:
         with open(self.file, "w") as json_file:
             json.dump(data, json_file, indent=4)
 
-    def __init__(self, contact, file_name='book.json'):
+    def __init__(self, contact: Contact, file_name: str ='book.json'):
         self.file = file_name
         json_data = [{
             "name": contact.name,
@@ -72,8 +72,6 @@ def get_data() -> list[Contact]:
         strings = []
         contacts = []
         for string in file:
-            strings.append(string)
-        for string in strings:
             name, phone = string.split()
             contacts.append(Contact(name, phone))
     return contacts
