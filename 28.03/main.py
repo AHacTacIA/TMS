@@ -3,7 +3,6 @@
 # хранить операцию (снятие или пополнение), сумму, дату и время операции.
 # Создать экземпляр банковского аккаунта и проверить его работу.
 import time
-from dataclasses import dataclass
 import datetime as dt
 
 
