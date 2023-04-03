@@ -4,10 +4,16 @@
 # Создать экземпляр банковского аккаунта и проверить его работу.
 import time
 import datetime as dt
+from enum import Enum
+
+
+class OperationEnum(Enum):
+    PLUS = "Пополнение"
+    MINUS = "Снятие"
 
 
 class AccountHistory:
-    def __init__(self, balance: float, name: str = "пополнение"):
+    def __init__(self, balance: float, name: str):
         self.name = name
         self.summa = balance
         self.date = dt.datetime.isoformat(dt.datetime.now())
@@ -19,25 +25,33 @@ class AccountHistory:
 class BankAccount:
     def __init__(self, balance: float = 0):
         self._balance = balance
-        self.history = [AccountHistory(balance)]
+        self.history = [AccountHistory(balance, OperationEnum.PLUS.value)]
 
     def __str__(self):
         return f"{self._balance},{self.history}"
 
-    def balance_top_up(self, balance: float) -> None:
-        self._balance += balance
-        self.history.append(AccountHistory(balance))
+    def do_operation(self, balance: float, operation: OperationEnum):
+        if operation == OperationEnum.PLUS:
+            self._balance += balance
+            self.history.append(AccountHistory(balance, operation.value))
+        else:
+            self._balance -= balance
+            self.history.append(AccountHistory(balance, operation.value))
 
-    def remove_from_balance(self, balance: float) -> None:
-        self._balance -= balance
-        self.history.append(AccountHistory(balance, "снятие"))
+    @property
+    def get_balance(self):
+        return self._balance
 
 
 account1 = BankAccount()
-account1.balance_top_up(10)
+account1.do_operation(30, OperationEnum.PLUS)
 print(account1)
-account1.balance_top_up(150)
 time.sleep(1)
-account1.remove_from_balance(50)
+account1.do_operation(25, OperationEnum.MINUS)
 print(account1)
+time.sleep(1)
+account1.do_operation(80, OperationEnum.PLUS)
+print(account1)
+account1.do_operation(100, OperationEnum.PLUS)
+print(account1.get_balance)
 
